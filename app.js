@@ -13,11 +13,9 @@ wss.on('connection', function(ws, req) {
 function c() {
     if (wss.clients.size>0) {
         webcam.capture('o', (err, data) => {
-            if (err) return console.log(err);
+            if (err) return wss.clients.forEach(ws => ws.send(JSON.stringify({type: "failure"})));
             frame = data;
-            wss.clients.forEach(function(ws) {
-                ws.send(JSON.stringify({type: "image", data: frame}));
-            });
+            wss.clients.forEach(ws => ws.send(JSON.stringify({type: "image", data: frame})));
         });
     }
 };
