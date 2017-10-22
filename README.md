@@ -1,5 +1,7 @@
 # wscam
-node-webcam over websockets
+ws-cam provides a quick and easy way to monitor your webcam over websockets.
+
+No configuration required, if you need to change anything please do so in `config.js`.
 
 Quick Start
 -----------

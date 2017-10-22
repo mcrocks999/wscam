@@ -1,4 +1,4 @@
-const express = require('express'), http = require('http'), WebSocket = require('ws'),
+const express = require('express'), http = require('http'), WebSocket = require('ws'), config = require('./config'),
 app = express(), server = http.createServer(app), wss = new WebSocket.Server({server, path:'/ws'}),
 nodewebcam = require('node-webcam'), webcam = nodewebcam.create({output:'jpeg',callbackReturn:'base64'});
 app.use(express.static(__dirname + '/public'));
@@ -24,5 +24,5 @@ function c() {
 c();
 setInterval(() => {
     c();
-},4000);
-server.listen(3000,()=>{console.log("Listening on :3000")});
+},config.interval);
+server.listen(config.port,()=>{console.log("Listening on :"+config.port)});
