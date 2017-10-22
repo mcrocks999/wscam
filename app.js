@@ -1,7 +1,7 @@
 const express = require('express'), http = require('http'), WebSocket = require('ws'), config = require('./config'),
-app = express(), server = http.createServer(app), wss = new WebSocket.Server({server, path:'/ws'}),
+app = express(), server = http.createServer(app), wss = new WebSocket.Server({server, path:config.webroot+'ws'}),
 nodewebcam = require('node-webcam'), webcam = nodewebcam.create({output:'jpeg',callbackReturn:'base64'});
-app.use(express.static(__dirname + '/public'));
+app.use(config.webroot, express.static(__dirname + '/public'));
 var frame = '';
 wss.on('connection', function(ws, req) {
     if(frame!='') ws.send(JSON.stringify({type: "image", data: frame}));
