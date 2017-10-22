@@ -7,7 +7,7 @@ Quick Start
 -----------
 
 ```sh
-git clone https://mcrocks999/wscam.git
+git clone https://github.com/mcrocks999/wscam.git
 cd wscam
 npm i
 node ./app.js
